@@ -1,0 +1,1 @@
+/home/abdo/duck/al_gore_rhythms/algos/binary-search/find-the-smallest-divisor/target/debug/find-the-smallest-divisor: /home/abdo/duck/al_gore_rhythms/algos/binary-search/find-the-smallest-divisor/src/main.rs

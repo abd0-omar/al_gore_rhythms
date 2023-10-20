@@ -1,0 +1,1 @@
+/home/abdo/duck/al_gore_rhythms/algos/graph/dfs/medium/longest-consective-sequence/target/debug/longest-consective-sequence: /home/abdo/duck/al_gore_rhythms/algos/graph/dfs/medium/longest-consective-sequence/src/main.rs

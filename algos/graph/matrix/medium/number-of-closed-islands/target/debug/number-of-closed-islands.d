@@ -1,0 +1,1 @@
+/home/abdo/duck/al_gore_rhythms/algos/graph/matrix/medium/number-of-closed-islands/target/debug/number-of-closed-islands: /home/abdo/duck/al_gore_rhythms/algos/graph/matrix/medium/number-of-closed-islands/src/main.rs
