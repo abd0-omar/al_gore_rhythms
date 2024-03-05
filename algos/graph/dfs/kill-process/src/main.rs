@@ -1,16 +1,17 @@
-type GRAPH = Vec<Vec<i32>>;
+use std::collections::{HashMap, HashSet};
 
 fn main() {
     println!("Hello, world!");
 
     let mut pid = vec![5, 2, 0, 1, 6, 3, 4];
     let mut ppid = vec![0, 5, 5, 5, 2, 2, 1];
-    let kill = 2;
-    println!("{:?}", kill_process(&mut pid, &mut ppid, kill));
+    let kill = 5;
+    println!("killed={:?}", kill_process(&mut pid, &mut ppid, kill));
 }
 
+type GRAPH = HashMap<i32, Vec<i32>>;
 fn kill_process(pid: &mut Vec<i32>, ppid: &mut Vec<i32>, kill: i32) -> Vec<i32> {
-    let mut graph: GRAPH = vec![vec![]; pid.len()];
+    let mut graph: GRAPH = HashMap::new();
 
     for i in 0..pid.len() {
         let from = ppid[i];
@@ -18,56 +19,32 @@ fn kill_process(pid: &mut Vec<i32>, ppid: &mut Vec<i32>, kill: i32) -> Vec<i32> 
         add_edge(&mut graph, from, to);
     }
 
-    println!("{:?}", graph);
+    println!("graph={:?}", graph);
 
-    let reach_vec = reachability(&graph, &pid);
-
-    reach_vec[kill as usize].clone()
+    reachability(&graph, kill)
 }
 
 fn add_edge(graph: &mut GRAPH, from: i32, to: i32) {
     if from == 0 {
         return;
     }
-    graph[from as usize].push(to);
+    graph.entry(from).or_insert(vec![]).push(to);
 }
 
-fn dfs(graph: &GRAPH, node: i32, visited: &mut Vec<bool>, reach: &mut Vec<i32>) {
-    // add a parameter that updates the vec of reachability
-    visited[node as usize] = true;
+fn dfs(graph: &GRAPH, node: i32, visited: &mut HashSet<i32>) {
+    visited.insert(node);
 
-    for &neighbor in &graph[node as usize] {
-        // add to the reachability vec
-        if visited[neighbor as usize] != true {
-            println!("neighbor={:?}", neighbor);
-            reach.push(neighbor);
-            dfs(graph, neighbor, visited, reach);
+    if let Some(neighbors) = graph.get(&node) {
+        for neighbor in neighbors {
+            if visited.get(neighbor).is_none() {
+                dfs(graph, *neighbor, visited);
+            }
         }
     }
 }
 
-fn reachability(graph: &GRAPH, pid: &Vec<i32>) -> Vec<Vec<i32>> {
-    let mut reach: Vec<Vec<i32>> = vec![vec![]; pid.len()];
-    for &p in pid {
-        println!("p={:?}", p);
-        let mut visited = vec![false; graph.len()];
-
-        // another vec = reach[i]
-
-        let mut another = vec![];
-
-        dfs(graph, p, &mut visited, &mut another);
-
-        println!("another={:?}", another);
-
-        reach[p as usize].push(p);
-        reach[p as usize].extend_from_slice(&another);
-        println!("reach={:?}", reach);
-
-        // reach[i].push(another vec);
-    }
-
-    reach
+fn reachability(graph: &GRAPH, node: i32) -> Vec<i32> {
+    let mut visited = HashSet::new();
+    dfs(graph, node, &mut visited);
+    visited.iter().map(|&x| x).collect()
 }
-
-//vector<int> killProcess(vector<int> &pid, vector<int> &ppid, int kill)
