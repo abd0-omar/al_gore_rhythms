@@ -409,12 +409,12 @@ void test_is_same() {
 }
 
 int main() {
-  // test1();
-  // test2();
-  // test3();
-  // test4();
-  // test5();
-  // test_is_same();
+  test1();
+  test2();
+  test3();
+  test4();
+  test5();
+  test_is_same();
 
   // must see it, otherwise RTE
   cout << "\n\nNO RTE\n";

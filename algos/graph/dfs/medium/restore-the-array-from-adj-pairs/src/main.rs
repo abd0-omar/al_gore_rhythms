@@ -17,6 +17,7 @@ pub fn restore_array(adjacent_pairs: Vec<Vec<i32>>) -> Vec<i32> {
     }
 
     let mut result = Vec::new();
+    // the start or the end has one neighbor, so we should start from there
     let start = *adjacency_map
         .keys()
         .find(|&key| adjacency_map[key].len() == 1)

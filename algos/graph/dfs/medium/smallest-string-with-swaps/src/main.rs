@@ -1,13 +1,13 @@
 fn main() {
     println!("Hello, world!");
-    let s = "dcab".to_string();
-    let pairs = vec![vec![0, 3], vec![1, 2], vec![0, 2]];
-    // Output: "abcd"
-    println!("{}", smallest_string_with_swaps(s, pairs));
     // let s = "dcab".to_string();
-    // let pairs = vec![vec![0, 3], vec![1, 2]];
-    // // Output: "bacd"
+    // let pairs = vec![vec![0, 3], vec![1, 2], vec![0, 2]];
+    // Output: "abcd"
     // println!("{}", smallest_string_with_swaps(s, pairs));
+    let s = "dcab".to_string();
+    let pairs = vec![vec![0, 3], vec![1, 2]];
+    // // Output: "bacd"
+    println!("{}", smallest_string_with_swaps(s, pairs));
 }
 
 pub fn smallest_string_with_swaps(s: String, pairs: Vec<Vec<i32>>) -> String {
@@ -39,6 +39,7 @@ pub fn smallest_string_with_swaps(s: String, pairs: Vec<Vec<i32>>) -> String {
         println!("DEBUGPRINT[10]: main.rs:38: component={:?}", component);
         let mut chain_string: Vec<char> = component.iter().map(|&c| s[c]).collect();
         chain_string.sort();
+        println!("chain_string={:?}", chain_string);
 
         for (idx, &c) in component.iter().enumerate() {
             s[c] = chain_string[idx];

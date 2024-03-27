@@ -60,16 +60,16 @@ fn walss_and_gates(rooms: &mut Vec<Vec<i32>>) {
         for _ in 0..size {
             let (i, j) = q.pop_front().unwrap();
             for &(di, dj) in &[(1, 0), (0, 1), (-1, 0), (0, -1)] {
-                let di = di + i;
-                let dj = dj + j;
-                if (0..rooms.len()).contains(&(di as usize))
-                    && (0..rooms[0].len()).contains(&(dj as usize))
-                    && !visited[di as usize][dj as usize]
-                    && rooms[di as usize][dj as usize] != -1
+                let di = (di + i) as usize;
+                let dj = (dj + j) as usize;
+                if (0..rooms.len()).contains(&(di))
+                    && (0..rooms[0].len()).contains(&(dj))
+                    && !visited[di][dj]
+                    && rooms[di][dj] != -1
                 {
-                    q.push_back((di, dj));
-                    visited[di as usize][dj as usize] = true;
-                    rooms[di as usize][dj as usize] = lvl;
+                    q.push_back((di as i32, dj as i32));
+                    visited[di][dj] = true;
+                    rooms[di][dj] = lvl;
                     println!("rooms={:#?}", rooms);
                 }
             }

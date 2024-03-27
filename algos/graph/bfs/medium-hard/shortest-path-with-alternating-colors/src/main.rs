@@ -48,9 +48,10 @@ pub fn shortest_alternating_paths(
     }
 
     let mut q = VecDeque::new();
-    q.push_back((0 as usize, Color::Red));
-    q.push_back((0 as usize, Color::Blue));
+    q.push_back((0, Color::Red));
+    q.push_back((0, Color::Blue));
 
+    // works as a visited array and the len is not needed
     let mut len = vec![vec![-1; 2]; n as usize];
     len[0][Color::Red as usize] = 0;
     len[0][Color::Blue as usize] = 0;

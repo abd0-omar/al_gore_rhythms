@@ -30,8 +30,11 @@ pub fn valid_tree(n: i32, edges: Vec<Vec<i32>>) -> bool {
         graph[to as usize].push(from as i32);
     }
 
+    // len works as a visited array
     let mut len: Vec<Option<i32>> = vec![None; n as usize];
+    // parent used to avoid fake cycles
     let mut parent = vec![None; n as usize];
+    // when there is a fake cycle validation is triggered to to true return false
     let mut validation = false;
 
     for i in 0..n as usize {
