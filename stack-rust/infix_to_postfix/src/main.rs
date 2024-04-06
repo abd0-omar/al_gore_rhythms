@@ -20,8 +20,10 @@ fn main() {
     // let infix = String::from("a+b*(c^d-e)^(f+G*h)-i");
     // println!("{}", infix_to_postfix(infix));
 
-    let infix = "(1+(4+5+2)-3)+(6+8)".to_string();
-    println!("{}", infix_to_postfix(infix));
+    // let infix = "(1+(4+5+2)-3)+(6+8)".to_string();
+    // println!("{}", infix_to_postfix(infix));
+    // let infix = "3+2-9".to_string();
+    // println!("{}", infix_to_postfix(infix));
 }
 
 fn infix_to_postfix(infix: String) -> String {

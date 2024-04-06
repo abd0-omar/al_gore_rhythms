@@ -1,0 +1,20 @@
+make an array that have an index pointing to the middle and mark it deleted with a MAX value or something else
+
+M
+1
+M
+1, 2
+   M
+1, 2, 3
+   M
+1, 2, 3, 4
+      M
+1, 2, 3, 4, 5
+   M  
+1, 2, X, 4, 5
+
+the dr. said there are three ways to delete something in an array
+
+- simply remove it by copying the array
+- mark it deleted with an extra boolean array
+- move it to the end of the array and decrease the length
